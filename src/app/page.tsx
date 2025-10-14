@@ -1,103 +1,226 @@
-import Image from "next/image";
+import Image from 'next/image';
+import Link from 'next/link';
+import { Coffee, Clock, MapPin, Star, ArrowRight, Heart } from 'lucide-react';
+import { getPopularItems } from '@/data/menu';
+import JsonLd, { restaurantJsonLd } from '@/components/JsonLd';
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const popular = getPopularItems().slice(0, 6);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const features = [
+    {
+      icon: Coffee,
+      title: 'Premium Kahve',
+      description: 'Dünyanın en kaliteli kahve çekirdeklerini kullanıyoruz'
+    },
+    {
+      icon: Clock,
+      title: '7/24 Hizmet',
+      description: 'Haftanın her günü sizlere hizmet veriyoruz'
+    },
+    {
+      icon: Heart,
+      title: 'Sıcak Atmosfer',
+      description: 'Rahat ve konforlu bir ortamda kahve keyfi'
+    }
+  ];
+
+  return (
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-r from-brandGreen-900 to-brandGreen-700 py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+                Premium Kahve
+                <span className="text-amber-300 block">Deneyimi</span>
+              </h1>
+              <p className="text-xl text-white/90 mb-8 leading-relaxed">
+                Türkiye'nin en kaliteli kahve deneyimini yaşayın. Özel harmanlarımız, 
+                taze ürünlerimiz ve sıcak atmosferimizle sizi bekliyoruz.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link 
+                  href="/menu" 
+                  className="bg-amber-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-amber-700 transition-colors duration-200 flex items-center justify-center"
+                >
+                  Menüyü İncele
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+                <Link 
+                  href="/contact" 
+                  className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-brandGreen-800 transition-colors duration-200 flex items-center justify-center"
+                >
+                  <MapPin className="mr-2 h-5 w-5" />
+                  Konumumuz
+                </Link>
+              </div>
+            </div>
+            <div className="relative">
+              <div className="bg-cream-100 rounded-2xl shadow-2xl p-8">
+                <div className="aspect-square bg-gradient-to-br from-amber-100 to-orange-100 rounded-xl flex items-center justify-center">
+                  <Coffee className="h-32 w-32 text-amber-600" />
+                </div>
+              </div>
+              <div className="absolute -top-4 -right-4 bg-amber-600 text-white p-4 rounded-full">
+                <Star className="h-6 w-6" />
+              </div>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-16 bg-cream-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-white mb-4">Neden Bizi Tercih Etmelisiniz?</h2>
+            <p className="text-lg text-white/80 max-w-2xl mx-auto">
+              Kalite, lezzet ve hizmet anlayışımızla fark yaratıyoruz
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {features.map((feature, index) => (
+              <div key={index} className="text-center p-6">
+                <div className="bg-brandGreen-800 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <feature.icon className="h-8 w-8 text-amber-300" />
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-2">{feature.title}</h3>
+                <p className="text-white/80">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Best Sellers Preview */}
+      <section className="py-16 bg-brandGreen-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-white mb-4">En Çok Tercih Edilenler</h2>
+            <p className="text-lg text-white/80 max-w-2xl mx-auto">Misafirlerimizin favorilerini keşfedin</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {popular.map((item) => (
+              <Link key={item.id} href={`/menu/${item.id}`} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-200">
+                <div className="aspect-square bg-gradient-to-br from-amber-100 to-orange-100 flex items-center justify-center">
+                  {item.image ? (
+                    <Image src={item.image} alt={item.name} width={300} height={300} className="object-contain p-6" />
+                  ) : (
+                    <Coffee className="h-16 w-16 text-amber-600" />
+                  )}
+                </div>
+                <div className="p-6">
+                  <div className="text-sm text-amber-600 font-medium mb-2">{item.category === 'cafe' ? 'Cafe' : 'Restoran'}</div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">{item.name}</h3>
+                  <p className="text-gray-600 text-sm">{item.description}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+          <div className="text-center mt-8">
+            <Link 
+              href="/best-sellers" 
+              className="inline-flex items-center bg-amber-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-amber-700 transition-colors duration-200"
+            >
+              Tümünü Gör
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Newsletter Stripe */}
+      <section className="py-12 bg-cream-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="rounded-2xl bg-brandGreen-900 p-8 text-center">
+            <h3 className="text-2xl font-bold text-white mb-2">Yeni ürün ve kampanyaları kaçırmayın</h3>
+            <p className="text-white/80 mb-6">Abone olun, ilk siz haberdar olun</p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <input type="email" placeholder="E-posta adresiniz"
+                className="px-4 py-3 rounded-lg bg-white text-gray-900 w-full sm:w-80" />
+              <button className="btn-primary">Abone Ol</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Mağazalarımız şeridi */}
+      <section className="py-12 bg-brandGreen-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
+            <div>
+              <h3 className="text-2xl font-bold text-white mb-2">Mağazalarımız</h3>
+              <p className="text-white/80">Size en yakın bacco şubesini bulun ve ziyaret edin.</p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full lg:w-auto">
+              <div className="rounded-xl bg-brandGreen-800 p-4 text-white/90">
+                <div className="font-semibold">Merkez / Amasya</div>
+                <div className="text-sm text-white/70">Atatürk Cd. No:123</div>
+              </div>
+              <div className="rounded-xl bg-brandGreen-800 p-4 text-white/90">
+                <div className="font-semibold">Beşiktaş / İstanbul</div>
+                <div className="text-sm text-white/70">Barbaros Blv. No:45</div>
+              </div>
+              <div className="rounded-xl bg-brandGreen-800 p-4 text-white/90">
+                <div className="font-semibold">Kadıköy / İstanbul</div>
+                <div className="text-sm text-white/70">Bahariye Cd. No:22</div>
+              </div>
+            </div>
+            <Link href="/contact" className="btn-secondary">Haritada Gör</Link>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 bg-amber-600">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold text-white mb-4">
+            Kahve Keyfinizi Bugün Başlatın
+          </h2>
+          <p className="text-xl text-amber-100 mb-8 max-w-2xl mx-auto">
+            En kaliteli kahve deneyimini yaşamak için hemen ziyaret edin veya online sipariş verin
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link 
+              href="/contact" 
+              className="bg-white text-amber-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200"
+            >
+              Ziyaret Edin
+            </Link>
+            <Link 
+              href="/menu" 
+              className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-amber-600 transition-colors duration-200"
+            >
+              Online Sipariş
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Blog / Duyurular */}
+      <section className="py-16 bg-cream-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-white mb-4">Blog ve Duyurular</h2>
+            <p className="text-lg text-white/80 max-w-2xl mx-auto">Demleme ipuçları, etkinlikler ve duyurular</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[1,2,3].map((i) => (
+              <div key={i} className="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                <div className="h-40 bg-gradient-to-br from-amber-100 to-orange-100" />
+                <div className="p-6">
+                  <div className="text-amber-600 text-sm font-medium mb-2">Duyuru</div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Yeni mevsim menümüz yayında</h3>
+                  <p className="text-gray-600 text-sm mb-4">Mevsimin en taze lezzetleriyle hazırlanan yeni menümüzü keşfedin.</p>
+                  <Link href="/best-sellers" className="text-amber-600 font-semibold hover:underline">Devamını Oku</Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
