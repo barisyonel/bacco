@@ -66,7 +66,13 @@ export default function MenuPage() {
                   </div>
                   <div className="ml-6">
                     <div className="w-32 h-32 bg-white/80 rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300">
-                      <Image src="/images/burger.svg" alt="Restoran" width={80} height={80} className="drop-shadow-lg" />
+                      <Image 
+                  src="/images/burger.svg" 
+                  alt="bacco restoran menüsü - hamburger, salata ve tost çeşitleri" 
+                  width={80} 
+                  height={80} 
+                  className="drop-shadow-lg" 
+                />
                     </div>
                   </div>
                 </div>
@@ -103,7 +109,13 @@ export default function MenuPage() {
                   </div>
                   <div className="ml-6">
                     <div className="w-32 h-32 bg-white/80 rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300">
-                      <Image src="/images/espresso.svg" alt="Cafe" width={80} height={80} className="drop-shadow-lg" />
+                      <Image 
+                  src="/images/espresso.svg" 
+                  alt="bacco cafe menüsü - espresso, latte, cappuccino ve diğer kahve çeşitleri" 
+                  width={80} 
+                  height={80} 
+                  className="drop-shadow-lg" 
+                />
                     </div>
                   </div>
                 </div>

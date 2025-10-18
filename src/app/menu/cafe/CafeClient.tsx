@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Coffee, Droplets, GlassWater, Filter } from 'lucide-react';
@@ -25,7 +26,29 @@ type Props = {
 };
 
 export default function CafeClient({ items }: Props) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [activeFilter, setActiveFilter] = useState('all');
+
+  // URL parametrelerinden filtreyi yükle
+  useEffect(() => {
+    const filter = searchParams.get('filter');
+    if (filter && QUICK_FILTERS.some(f => f.id === filter)) {
+      setActiveFilter(filter);
+    }
+  }, [searchParams]);
+
+  // Filtre değiştiğinde URL'yi güncelle
+  const handleFilterChange = (filterId: string) => {
+    setActiveFilter(filterId);
+    const params = new URLSearchParams(searchParams);
+    if (filterId === 'all') {
+      params.delete('filter');
+    } else {
+      params.set('filter', filterId);
+    }
+    router.push(`?${params.toString()}`, { scroll: false });
+  };
 
   const groups: Record<string, { items: typeof items; icon: any; color: string }> = {};
   for (const g of GROUPS) {
@@ -70,20 +93,20 @@ export default function CafeClient({ items }: Props) {
             <span className="text-sm font-medium text-gray-700">Hızlı Filtreler:</span>
           </div>
           <div className="flex flex-wrap gap-2">
-            {QUICK_FILTERS.map((filter) => (
-              <button
-                key={filter.id}
-                onClick={() => setActiveFilter(filter.id)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                  activeFilter === filter.id
-                    ? 'bg-amber-600 text-white shadow-lg'
-                    : 'bg-white text-gray-700 hover:bg-amber-50 border border-gray-200'
-                }`}
-              >
-                <filter.icon className="h-4 w-4" />
-                {filter.label}
-              </button>
-            ))}
+              {QUICK_FILTERS.map((filter) => (
+                <button
+                  key={filter.id}
+                  onClick={() => handleFilterChange(filter.id)}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                    activeFilter === filter.id
+                      ? 'bg-amber-600 text-white shadow-lg'
+                      : 'bg-white text-gray-700 hover:bg-amber-50 border border-gray-200'
+                  }`}
+                >
+                  <filter.icon className="h-4 w-4" />
+                  {filter.label}
+                </button>
+              ))}
           </div>
         </div>
 

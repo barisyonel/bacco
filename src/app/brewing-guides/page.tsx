@@ -1,88 +1,80 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Clock, Thermometer, Droplets, Coffee, ArrowRight, CheckCircle } from 'lucide-react';
+import { Coffee, Clock, Thermometer, Droplets, Filter } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Demleme Rehberleri',
-  description: 'V60, Aeropress, French Press ile mükemmel kahve demleme teknikleri. Barista ipuçları ve adım adım rehberler.',
+  title: 'Demleme Rehberleri | bacco',
+  description: 'Mükemmel kahve demleme teknikleri ve rehberleri. Espresso, French Press, V60 ve daha fazlası.',
+  alternates: { canonical: '/brewing-guides' },
   openGraph: {
     title: 'Demleme Rehberleri | bacco',
-    description: 'V60, Aeropress, French Press ile mükemmel kahve demleme teknikleri.',
+    description: 'Mükemmel kahve demleme teknikleri ve rehberleri.',
+    type: 'website',
   },
-  alternates: { canonical: '/brewing-guides' },
 };
 
-const brewingMethods = [
+const guides = [
   {
-    id: 'v60',
-    name: 'V60 Pour Over',
-    description: 'Japon tarzı damla demleme tekniği ile temiz ve aromalı kahve',
+    id: 'espresso',
+    title: 'Espresso Demleme',
+    description: 'Mükemmel espresso için adım adım rehber',
+    icon: Coffee,
     difficulty: 'Orta',
-    time: '4-5 dk',
-    temperature: '92-96°C',
-    ratio: '1:16',
-    image: '/images/v60-brewing.jpg',
+    time: '5-10 dk',
+    temperature: '90-95°C',
     steps: [
-      'Kahve çekirdeğini orta-ince öğütün (tuz tanesi büyüklüğünde)',
-      'Filtreyi V60\'a yerleştirin ve sıcak su ile ıslatın',
-      '30g kahve için 480ml su kullanın',
-      '30 saniye bloom (ilk döküm) yapın',
-      'Dairesel hareketlerle 3-4 turda dökümü tamamlayın',
-      'Toplam demleme süresi 3-4 dakika olmalı'
-    ],
-    tips: [
-      'Su sıcaklığını termometre ile kontrol edin',
-      'Döküm hızını sabit tutun',
-      'Kahve yatağını düz tutun'
-    ]
-  },
-  {
-    id: 'aeropress',
-    name: 'AeroPress',
-    description: 'Hızlı ve pratik demleme yöntemi ile yoğun aromalı kahve',
-    difficulty: 'Kolay',
-    time: '2-3 dk',
-    temperature: '85-90°C',
-    ratio: '1:12',
-    image: '/images/aeropress-brewing.jpg',
-    steps: [
-      'Kahve çekirdeğini ince öğütün',
-      'AeroPress\'e filtre kağıdı yerleştirin',
-      '17g kahve için 200ml su kullanın',
-      'Kahveyi AeroPress\'e koyun',
-      '30 saniye bekleyin (bloom)',
-      'Kalan suyu ekleyin ve 1 dakika bekleyin',
-      'Yavaşça bastırarak demlemeyi tamamlayın'
-    ],
-    tips: [
-      'Bastırma süresini 30-45 saniye tutun',
-      'Çok hızlı bastırmayın',
-      'Filtre kağıdını ıslatmayı unutmayın'
+      'Kahve çekirdeklerini ince öğütün',
+      'Portafilter\'ı 18g kahve ile doldurun',
+      'Kahveyi düzgün şekilde sıkıştırın',
+      'Makineyi 25-30 saniye çalıştırın',
+      '30ml espresso elde edin'
     ]
   },
   {
     id: 'french-press',
-    name: 'French Press',
-    description: 'Geleneksel demleme yöntemi ile tam gövdeli kahve',
+    title: 'French Press',
+    description: 'Klasik French Press ile demleme',
+    icon: Filter,
     difficulty: 'Kolay',
     time: '4-5 dk',
-    temperature: '90-95°C',
-    ratio: '1:15',
-    image: '/images/french-press-brewing.jpg',
+    temperature: '95-98°C',
     steps: [
-      'Kahve çekirdeğini kalın öğütün (deniz tuzu büyüklüğünde)',
-      'French Press\'e kahveyi koyun',
-      '30g kahve için 450ml su kullanın',
-      'Tüm suyu dökün ve karıştırın',
+      'Su kaynatın ve 1 dakika bekleyin',
+      'Kahveyi kaba öğütün (1:15 oran)',
+      'Sıcak suyu ekleyin ve karıştırın',
       '4 dakika bekleyin',
-      'Yavaşça aşağı bastırarak filtreyi indirin',
-      'Hemen servis yapın'
-    ],
-    tips: [
-      'Çok ince öğütmeyin',
-      '4 dakikadan fazla bekletmeyin',
-      'Hemen servis yapın, bekletmeyin'
+      'Plunger\'ı yavaşça aşağı itin'
+    ]
+  },
+  {
+    id: 'v60',
+    title: 'V60 Pour Over',
+    description: 'Hario V60 ile hassas demleme',
+    icon: Droplets,
+    difficulty: 'Zor',
+    time: '3-4 dk',
+    temperature: '92-96°C',
+    steps: [
+      'Filtreyi V60\'a yerleştirin',
+      'Kahveyi orta-ince öğütün',
+      'Bloom için 50ml su ekleyin',
+      '30 saniye bekleyin',
+      'Dairesel hareketlerle su ekleyin'
+    ]
+  },
+  {
+    id: 'cold-brew',
+    title: 'Cold Brew',
+    description: 'Soğuk demleme tekniği',
+    icon: Clock,
+    difficulty: 'Kolay',
+    time: '12-18 saat',
+    temperature: 'Oda sıcaklığı',
+    steps: [
+      'Kahveyi kaba öğütün',
+      '1:4 oranında soğuk su ekleyin',
+      'Buzdolabında 12-18 saat bekletin',
+      'Filtreleyin ve servis yapın',
+      'Buz ile soğutun'
     ]
   }
 ];
@@ -91,134 +83,93 @@ export default function BrewingGuidesPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Demleme Rehberleri
-            </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Mükemmel kahve demlemek için barista teknikleri. V60, AeroPress ve French Press 
-              ile evde profesyonel kalitede kahve hazırlayın.
-            </p>
-          </div>
+      <div className="bg-gradient-to-r from-brandGreen-900 to-brandGreen-700 py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-4xl font-bold text-white mb-4">Demleme Rehberleri</h1>
+          <p className="text-xl text-cream-200 max-w-3xl mx-auto">
+            Mükemmel kahve demleme tekniklerini öğrenin. Her yöntem için detaylı rehberler ve ipuçları.
+          </p>
         </div>
       </div>
 
       {/* Breadcrumb */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
-        <nav className="text-sm mb-8" aria-label="Breadcrumb">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <nav className="text-sm" aria-label="Breadcrumb">
           <ol className="flex items-center gap-2 text-gray-600">
-            <li><Link href="/" className="hover:underline">Ana Sayfa</Link></li>
+            <li><a href="/" className="hover:underline">Ana Sayfa</a></li>
             <li className="text-gray-400">/</li>
             <li className="text-gray-900 font-medium">Demleme Rehberleri</li>
           </ol>
         </nav>
       </div>
 
-      {/* Methods Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {brewingMethods.map((method) => (
-            <div key={method.id} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300">
-              {/* Method Image */}
-              <div className="aspect-video bg-gradient-to-br from-amber-100 to-orange-100 relative">
-                <Image 
-                  src={method.image} 
-                  alt={method.name}
-                  fill
-                  className="object-cover"
-                  placeholder="blur"
-                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
-                />
-                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-sm font-semibold text-gray-900">
-                  {method.difficulty}
+      {/* Guides Grid */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {guides.map((guide) => {
+            const Icon = guide.icon;
+            return (
+              <div key={guide.id} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                <div className="p-8">
+                  <div className="flex items-center mb-4">
+                    <div className="p-3 bg-brandOrange-100 rounded-xl mr-4">
+                      <Icon className="h-8 w-8 text-brandOrange-600" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900">{guide.title}</h3>
+                      <p className="text-gray-600 text-sm">{guide.description}</p>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-3 gap-4 mb-6">
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-brandGreen-600">{guide.difficulty}</div>
+                      <div className="text-xs text-gray-500">Zorluk</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-brandOrange-600">{guide.time}</div>
+                      <div className="text-xs text-gray-500">Süre</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-amber-600">{guide.temperature}</div>
+                      <div className="text-xs text-gray-500">Sıcaklık</div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-3">
+                    <h4 className="font-semibold text-gray-900 mb-2">Adımlar:</h4>
+                    <ol className="space-y-2">
+                      {guide.steps.map((step, index) => (
+                        <li key={index} className="flex items-start">
+                          <span className="flex-shrink-0 w-6 h-6 bg-brandGreen-100 text-brandGreen-600 rounded-full flex items-center justify-center text-sm font-semibold mr-3">
+                            {index + 1}
+                          </span>
+                          <span className="text-gray-700 text-sm">{step}</span>
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
                 </div>
               </div>
-
-              {/* Method Content */}
-              <div className="p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-3">{method.name}</h2>
-                <p className="text-gray-600 mb-6">{method.description}</p>
-
-                {/* Method Stats */}
-                <div className="grid grid-cols-2 gap-4 mb-6">
-                  <div className="flex items-center text-sm text-gray-600">
-                    <Clock className="h-4 w-4 mr-2 text-amber-600" />
-                    <span>{method.time}</span>
-                  </div>
-                  <div className="flex items-center text-sm text-gray-600">
-                    <Thermometer className="h-4 w-4 mr-2 text-amber-600" />
-                    <span>{method.temperature}</span>
-                  </div>
-                  <div className="flex items-center text-sm text-gray-600">
-                    <Droplets className="h-4 w-4 mr-2 text-amber-600" />
-                    <span>{method.ratio}</span>
-                  </div>
-                  <div className="flex items-center text-sm text-gray-600">
-                    <Coffee className="h-4 w-4 mr-2 text-amber-600" />
-                    <span>Orta-ince</span>
-                  </div>
-                </div>
-
-                {/* Steps */}
-                <div className="mb-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">Adımlar</h3>
-                  <ol className="space-y-2">
-                    {method.steps.map((step, index) => (
-                      <li key={index} className="flex items-start text-sm text-gray-600">
-                        <span className="bg-amber-100 text-amber-800 rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mr-3 mt-0.5 flex-shrink-0">
-                          {index + 1}
-                        </span>
-                        <span>{step}</span>
-                      </li>
-                    ))}
-                  </ol>
-                </div>
-
-                {/* Tips */}
-                <div className="bg-amber-50 rounded-lg p-4">
-                  <h4 className="text-sm font-semibold text-amber-800 mb-2 flex items-center">
-                    <CheckCircle className="h-4 w-4 mr-1" />
-                    Barista İpuçları
-                  </h4>
-                  <ul className="space-y-1">
-                    {method.tips.map((tip, index) => (
-                      <li key={index} className="text-sm text-amber-700 flex items-start">
-                        <span className="w-1.5 h-1.5 bg-amber-400 rounded-full mr-2 mt-2 flex-shrink-0"></span>
-                        <span>{tip}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
+      </div>
 
-        {/* CTA Section */}
-        <div className="mt-16 text-center">
-          <div className="bg-gradient-to-r from-amber-600 to-orange-600 rounded-2xl p-8 text-white">
-            <h2 className="text-3xl font-bold mb-4">Hazır mısınız?</h2>
-            <p className="text-xl mb-6 opacity-90">
-              En kaliteli kahve çekirdeklerimizle evde barista deneyimi yaşayın
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link 
-                href="/menu/cafe" 
-                className="bg-white text-amber-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200 flex items-center justify-center"
-              >
-                Kahve Çekirdekleri
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-              <Link 
-                href="/contact" 
-                className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-amber-600 transition-colors duration-200 flex items-center justify-center"
-              >
-                Barista Eğitimi
-              </Link>
-            </div>
-          </div>
+      {/* CTA Section */}
+      <div className="bg-brandOrange-600 py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold text-white mb-4">Hangi Demleme Yöntemini Denemek İstiyorsunuz?</h2>
+          <p className="text-xl text-cream-200 mb-8">
+            Mağazalarımızda tüm demleme ekipmanlarını bulabilir, baristalarımızdan öğrenebilirsiniz.
+          </p>
+          <a
+            href="/contact"
+            className="inline-flex items-center bg-white text-brandOrange-600 px-8 py-3 rounded-lg font-semibold hover:bg-cream-100 transition-colors duration-200"
+          >
+            <Coffee className="mr-2 h-5 w-5" />
+            Mağazalarımızı Ziyaret Edin
+          </a>
         </div>
       </div>
     </div>

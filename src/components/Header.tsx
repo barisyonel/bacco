@@ -39,34 +39,37 @@ export default function Header() {
               </Link>
             ))}
           </nav>
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-white hover:text-cream-200 p-2"
-            >
-              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
-          </div>
+              {/* Mobile menu button */}
+              <div className="md:hidden">
+                <button
+                  onClick={() => setIsMenuOpen(!isMenuOpen)}
+                  className="text-white hover:text-cream-200 p-2 focus:outline-none focus:ring-2 focus:ring-cream-200 rounded-md"
+                  aria-label={isMenuOpen ? 'Menüyü kapat' : 'Menüyü aç'}
+                  aria-expanded={isMenuOpen}
+                >
+                  {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                </button>
+              </div>
         </div>
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-brandGreen-700 border-t border-brandGreen-600">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="text-white/90 hover:text-cream-200 block px-3 py-2 text-base font-medium"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
+            {/* Mobile Navigation */}
+            {isMenuOpen && (
+              <div className="md:hidden" role="navigation" aria-label="Ana navigasyon">
+                <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-brandGreen-700 border-t border-brandGreen-600">
+                  {navigation.map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className="text-white/90 hover:text-cream-200 block px-3 py-2 text-base font-medium focus:outline-none focus:ring-2 focus:ring-cream-200 rounded-md"
+                      onClick={() => setIsMenuOpen(false)}
+                      aria-label={`${item.name} sayfasına git`}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
       </div>
     </header>
   );
