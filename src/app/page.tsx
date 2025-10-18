@@ -72,22 +72,22 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="py-16 bg-cream-50">
+      <section className="py-16 bg-gradient-to-br from-brandGreen-800 to-brandGreen-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-white mb-4">Neden Bizi Tercih Etmelisiniz?</h2>
-            <p className="text-lg text-white/80 max-w-2xl mx-auto">
+            <p className="text-lg text-cream-200 max-w-2xl mx-auto">
               Kalite, lezzet ve hizmet anlayışımızla fark yaratıyoruz
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
-              <div key={index} className="text-center p-6">
-                <div className="bg-brandGreen-800 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <feature.icon className="h-8 w-8 text-amber-300" />
+              <div key={index} className="text-center p-6 bg-white/10 backdrop-blur-sm rounded-2xl hover:bg-white/20 transition-all duration-300">
+                <div className="bg-brandOrange-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                  <feature.icon className="h-8 w-8 text-white" />
                 </div>
                 <h3 className="text-xl font-semibold text-white mb-2">{feature.title}</h3>
-                <p className="text-white/80">{feature.description}</p>
+                <p className="text-cream-200">{feature.description}</p>
               </div>
             ))}
           </div>
